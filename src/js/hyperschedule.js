@@ -1604,7 +1604,6 @@ function downloadPDF()
       "8:00 pm",
       "9:00 pm",
       "10:00 pm",
-      "11:00 pm",
     ][i], "right");
   }
 
