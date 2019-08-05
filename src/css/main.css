@@ -60,7 +60,6 @@ body {
 .two-column-right {
     float: right;
     height: 100%;
-    overflow-y: auto;
     width: 32%;
 }
 
@@ -193,6 +192,10 @@ body {
 }
 
 /*** Course description box ***/
+
+#selected-courses-wrapper {
+    padding-top: 5px;
+}
 
 #course-description-box-outer {
     display: block;
