@@ -184,12 +184,30 @@ body {
     display: table-cell;
     vertical-align: middle;
     padding-left: 10px;
+    position: relative;
 }
 
 #print-button {
     display: block;
     float: right;
     margin: 0 auto;
+}
+
+#print-button-dropdown {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+#print-button-starred {
+    display: block;
+}
+
+#print-button-wrapper:hover #print-button-dropdown {
+    display: block;
+    left: auto;
+    right: 0;
+    margin-right: 0;
 }
 
 /*** Course description box ***/

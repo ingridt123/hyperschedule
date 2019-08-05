@@ -32,6 +32,7 @@ const courseSearchResultsList = document.getElementById("course-search-results-l
 const importExportDataButton = document.getElementById("import-export-data-button");
 
 const printButton = document.getElementById("print-button");
+const printButtonStarred = document.getElementById("print-button-starred");
 
 const courseDescriptionBox = document.getElementById("course-description-box");
 const courseDescriptionBoxOuter = document.getElementById("course-description-box-outer");
@@ -646,7 +647,12 @@ function attachListeners()
     forcePlaceholderSize: true,
     placeholder: createCourseEntity("placeholder").outerHTML,
   });
-  printButton.addEventListener("click", downloadPDF);
+  printButton.addEventListener("click", function() {
+    downloadPDF("all");
+  });
+  printButtonStarred.addEventListener("click", function() {
+    downloadPDF("starred");
+  });
   selectedCoursesList.addEventListener("sortupdate", readSelectedCoursesList);
   selectedCoursesList.addEventListener("sortstart", () => {
     gCurrentlySorting = true;
@@ -1525,7 +1531,7 @@ function readStateFromLocalStorage()
 
 /// PDF download
 
-function downloadPDF()
+function downloadPDF(courseType)
 {
   // initialize PDF object
   const pdf = new jsPDF({
@@ -1610,8 +1616,18 @@ function downloadPDF()
   // header underline
   pdf.line(1.25 * 72, 0.5 * 72, 1.25 * 72, 0.5 * 72 + tableHeight);
 
+  let coursesToPrint = gSelectedCourses;
+  if (courseType == "starred") {
+    coursesToPrint = []
+    for (const coursePrint of gSelectedCourses) {
+      if (coursePrint.starred) {
+        coursesToPrint.push(coursePrint);
+      }
+    }
+  }
+
   // course entities
-  for (const course of computeSchedule(gSelectedCourses))
+  for (const course of computeSchedule(coursesToPrint))
   {
     for (const slot of course.courseSchedule)
     {
