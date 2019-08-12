@@ -20,6 +20,18 @@
     cursor: auto;
 }
 
+.btn-icon {
+    display: block;
+    color: #007bff;
+    font-size: 30px;
+    padding: 0px 2px;
+}
+
+.btn-icon:hover {
+    color: #0069d9;
+}
+}
+
 .hidden {
     display: none;
 }
@@ -120,6 +132,23 @@ body {
 #course-search-course-name-input-wrapper {
     display: table-cell;
     width: 100%;
+    position: relative;
+    border: 1px solid #ced4da;
+}
+/*TODO*/
+#course-search-course-name-input {
+    float: left;
+    width: 90%;
+    border: none;
+    margin: 0px auto;
+}
+
+#course-search-settings {
+    float: right;
+    width: 10%;
+    line-height: 1.2;
+    z-index: 2;
+    background-color: transparent;
 }
 
 #closed-courses-toggle-wrapper {
