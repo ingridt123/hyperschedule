@@ -1044,6 +1044,7 @@ function updateSelectedCoursesList() {
 function updateSchedule() {
   updateScheduleTimeZone();
   const schedule = computeSchedule(gSelectedCourses);
+  console.log(schedule);
   while (scheduleTable.getElementsByClassName("schedule-slot").length > 0) {
     const element = scheduleTable.getElementsByClassName(
       "schedule-slot-wrapper"
@@ -1051,7 +1052,7 @@ function updateSchedule() {
     element.parentNode!.removeChild(element);
   }
   for (const course of schedule) {
-    const entities = Course.createSlotEntities(course);
+    const entities = Course.createSlotEntities(course, setCourseDescriptionBox);
     entities.forEach(e => scheduleTable.appendChild(e));
   }
   creditCountText.textContent = computeCreditCountDescription(schedule);
